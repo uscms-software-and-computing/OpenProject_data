@@ -5,9 +5,14 @@ inputs:
     description: 'Who to greet'
     required: true
     default: 'World'
+  OPEN_PROJECT_ID: # OpenProject secret
+    description: "OpenProject ID"
+    required: true
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  # time: # id of output
+  #   description: 'The time we greeted you'
+  work_package:
+    description: 'Work Packages from OpenProject'
 runs:
   using: 'node16'
   main: 'dist/index.js'
