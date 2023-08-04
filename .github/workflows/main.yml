@@ -20,6 +20,8 @@ jobs:
         run: echo $ > test.json
       - name: Commit changes
         run: |
+          git config --global user.email "robtuck@gmail.com"
+          git config --global user.name "Rob Tuck"
           git add test.json
           git commit -m "update test.json"
           
