@@ -17,4 +17,9 @@ jobs:
           OPEN_PROJECT_ID: ${{secrets.OPEN_PROJECT_ID}}
       # Use the output from the `hello` step
       - name: Get the output time
-        run: echo $ >> test.json
+        run: echo $ > test.json
+      - name: Commit changes
+        run: |
+          git add test.json
+          git commit -m "update test.json"
+          
