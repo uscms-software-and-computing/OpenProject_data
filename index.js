@@ -2,9 +2,10 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 import { Headers } from 'headers-utils'
 import fetch from 'node-fetch';
-
+const { writeFileSync } = require('fs');
 
 try {
+    const file_name = core.getInput('input_file');
     let myHeaders = new Headers();
     const opToken = core.getInput('OPEN_PROJECT_ID');
     let authString = 'apikey' + ":" + opToken;
@@ -30,7 +31,13 @@ try {
     const { results } = await response.json();
     console.log(results);
 
-    core.setOutput('work_packages', results);
+    try {
+        writeFileSync(file_name, JSON.stringify(results));
+        console.log("Wrote file");
+    } catch(error) {
+        console.log("Didn't write");
+    }
+    // core.setOutput('work_packages', results);
 
     const nameToGreet = core.getInput('who-to-greet');
     console.log(`Hello ${nameToGreet}`);

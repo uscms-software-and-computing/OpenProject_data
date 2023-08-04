@@ -8,6 +8,9 @@ inputs:
   OPEN_PROJECT_ID: # OpenProject secret
     description: "OpenProject ID"
     required: true
+  input_file:
+    description: "Where the date should go"
+    default: './test.json'
 outputs:
   time: # id of output
     description: 'The time we greeted you'

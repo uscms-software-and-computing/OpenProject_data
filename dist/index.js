@@ -13,9 +13,10 @@ const core = __nccwpck_require__(405);
 const github = __nccwpck_require__(3899);
 
 
-
+const { writeFileSync } = __nccwpck_require__(7147);
 
 try {
+    const file_name = core.getInput('input_file');
     let myHeaders = new headers_utils__WEBPACK_IMPORTED_MODULE_0__/* .Headers */ .PM();
     const opToken = core.getInput('OPEN_PROJECT_ID');
     let authString = 'apikey' + ":" + opToken;
@@ -41,17 +42,23 @@ try {
     const { results } = await response.json();
     console.log(results);
 
-    core.setOutput('work_packages', results);
+    try {
+        writeFileSync(file_name, JSON.stringify(results));
+        console.log("Wrote file");
+    } catch(error) {
+        console.log("Didn't write");
+    }
+    // core.setOutput('work_packages', results);
 
     const nameToGreet = core.getInput('who-to-greet');
     console.log(`Hello ${nameToGreet}`);
 
     const time = new Date().toTimeString();
 
-    // core.setOutput('time', time);
-    // const payload = JSON.stringify(github.context.payload, undefined, 2);
+    core.setOutput('time', time);
+    const payload = JSON.stringify(github.context.payload, undefined, 2);
 
-    // console.log(`The event payload: ${payload}`);
+    console.log(`The event payload: ${payload}`);
     } catch (error) {
     core.setFailed(error.message);
     }
