@@ -31,12 +31,12 @@ try {
     const { results } = await response.json();
     console.log(results);
 
-    try {
-        writeFileSync(file_name, JSON.stringify(results));
-        console.log("Wrote file");
-    } catch(error) {
-        console.log("Didn't write");
-    }
+    // try {
+    //     writeFileSync(file_name, JSON.stringify(results));
+    //     console.log("Wrote file");
+    // } catch(error) {
+    //     console.log("Didn't write");
+    // }
     // core.setOutput('work_packages', results);
 
     const nameToGreet = core.getInput('who-to-greet');
