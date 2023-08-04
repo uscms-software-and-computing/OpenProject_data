@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 import { Headers } from 'headers-utils'
+import fetch from 'node-fetch';
 
 
 try {
