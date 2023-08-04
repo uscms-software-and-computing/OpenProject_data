@@ -6385,6 +6385,609 @@ exports.Deprecation = Deprecation;
 
 /***/ }),
 
+/***/ 924:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __values = (this && this.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var normalizeHeaderName_1 = __nccwpck_require__(8846);
+var normalizeHeaderValue_1 = __nccwpck_require__(9347);
+var HeadersPolyfill = /** @class */ (function () {
+    function HeadersPolyfill(init) {
+        var _this = this;
+        // Normalized header {"name":"a, b"} storage.
+        this._headers = {};
+        // Keeps the mapping between the raw header name
+        // and the normalized header name to ease the lookup.
+        this._names = new Map();
+        /**
+         * @note Cannot check if the `init` is an instance of the `Headers`
+         * because that class is only defined in the browser.
+         */
+        if (['Headers', 'HeadersPolyfill'].includes(init === null || init === void 0 ? void 0 : init.constructor.name) ||
+            init instanceof HeadersPolyfill) {
+            var initialHeaders = init;
+            initialHeaders.forEach(function (value, name) {
+                _this.append(name, value);
+            }, this);
+        }
+        else if (Array.isArray(init)) {
+            init.forEach(function (_a) {
+                var _b = __read(_a, 2), name = _b[0], value = _b[1];
+                _this.append(name, Array.isArray(value) ? value.join(', ') : value);
+            });
+        }
+        else if (init) {
+            Object.getOwnPropertyNames(init).forEach(function (name) {
+                var value = init[name];
+                _this.append(name, Array.isArray(value) ? value.join(', ') : value);
+            });
+        }
+    }
+    HeadersPolyfill.prototype[Symbol.iterator] = function () {
+        return this.entries();
+    };
+    HeadersPolyfill.prototype.keys = function () {
+        var _a, _b, name_1, e_1_1;
+        var e_1, _c;
+        return __generator(this, function (_d) {
+            switch (_d.label) {
+                case 0:
+                    _d.trys.push([0, 5, 6, 7]);
+                    _a = __values(Object.keys(this._headers)), _b = _a.next();
+                    _d.label = 1;
+                case 1:
+                    if (!!_b.done) return [3 /*break*/, 4];
+                    name_1 = _b.value;
+                    return [4 /*yield*/, name_1];
+                case 2:
+                    _d.sent();
+                    _d.label = 3;
+                case 3:
+                    _b = _a.next();
+                    return [3 /*break*/, 1];
+                case 4: return [3 /*break*/, 7];
+                case 5:
+                    e_1_1 = _d.sent();
+                    e_1 = { error: e_1_1 };
+                    return [3 /*break*/, 7];
+                case 6:
+                    try {
+                        if (_b && !_b.done && (_c = _a.return)) _c.call(_a);
+                    }
+                    finally { if (e_1) throw e_1.error; }
+                    return [7 /*endfinally*/];
+                case 7: return [2 /*return*/];
+            }
+        });
+    };
+    HeadersPolyfill.prototype.values = function () {
+        var _a, _b, value, e_2_1;
+        var e_2, _c;
+        return __generator(this, function (_d) {
+            switch (_d.label) {
+                case 0:
+                    _d.trys.push([0, 5, 6, 7]);
+                    _a = __values(Object.values(this._headers)), _b = _a.next();
+                    _d.label = 1;
+                case 1:
+                    if (!!_b.done) return [3 /*break*/, 4];
+                    value = _b.value;
+                    return [4 /*yield*/, value];
+                case 2:
+                    _d.sent();
+                    _d.label = 3;
+                case 3:
+                    _b = _a.next();
+                    return [3 /*break*/, 1];
+                case 4: return [3 /*break*/, 7];
+                case 5:
+                    e_2_1 = _d.sent();
+                    e_2 = { error: e_2_1 };
+                    return [3 /*break*/, 7];
+                case 6:
+                    try {
+                        if (_b && !_b.done && (_c = _a.return)) _c.call(_a);
+                    }
+                    finally { if (e_2) throw e_2.error; }
+                    return [7 /*endfinally*/];
+                case 7: return [2 /*return*/];
+            }
+        });
+    };
+    HeadersPolyfill.prototype.entries = function () {
+        var _a, _b, name_2, e_3_1;
+        var e_3, _c;
+        return __generator(this, function (_d) {
+            switch (_d.label) {
+                case 0:
+                    _d.trys.push([0, 5, 6, 7]);
+                    _a = __values(Object.keys(this._headers)), _b = _a.next();
+                    _d.label = 1;
+                case 1:
+                    if (!!_b.done) return [3 /*break*/, 4];
+                    name_2 = _b.value;
+                    return [4 /*yield*/, [name_2, this.get(name_2)]];
+                case 2:
+                    _d.sent();
+                    _d.label = 3;
+                case 3:
+                    _b = _a.next();
+                    return [3 /*break*/, 1];
+                case 4: return [3 /*break*/, 7];
+                case 5:
+                    e_3_1 = _d.sent();
+                    e_3 = { error: e_3_1 };
+                    return [3 /*break*/, 7];
+                case 6:
+                    try {
+                        if (_b && !_b.done && (_c = _a.return)) _c.call(_a);
+                    }
+                    finally { if (e_3) throw e_3.error; }
+                    return [7 /*endfinally*/];
+                case 7: return [2 /*return*/];
+            }
+        });
+    };
+    /**
+     * Returns a `ByteString` sequence of all the values of a header with a given name.
+     */
+    HeadersPolyfill.prototype.get = function (name) {
+        return this._headers[normalizeHeaderName_1.normalizeHeaderName(name)] || null;
+    };
+    /**
+     * Sets a new value for an existing header inside a `Headers` object, or adds the header if it does not already exist.
+     */
+    HeadersPolyfill.prototype.set = function (name, value) {
+        var normalizedName = normalizeHeaderName_1.normalizeHeaderName(name);
+        this._headers[normalizedName] = normalizeHeaderValue_1.normalizeHeaderValue(value);
+        this._names.set(normalizedName, name);
+    };
+    /**
+     * Appends a new value onto an existing header inside a `Headers` object, or adds the header if it does not already exist.
+     */
+    HeadersPolyfill.prototype.append = function (name, value) {
+        var resolvedValue = this.has(name) ? this.get(name) + ", " + value : value;
+        this.set(name, resolvedValue);
+    };
+    /**
+     * Deletes a header from the `Headers` object.
+     */
+    HeadersPolyfill.prototype.delete = function (name) {
+        if (!this.has(name)) {
+            return this;
+        }
+        var normalizedName = normalizeHeaderName_1.normalizeHeaderName(name);
+        delete this._headers[normalizedName];
+        this._names.delete(normalizedName);
+        return this;
+    };
+    /**
+     * Returns the object of all the normalized headers.
+     */
+    HeadersPolyfill.prototype.all = function () {
+        return this._headers;
+    };
+    /**
+     * Returns the object of all the raw headers.
+     */
+    HeadersPolyfill.prototype.raw = function () {
+        var _this = this;
+        return Object.entries(this._headers).reduce(function (headers, _a) {
+            var _b = __read(_a, 2), name = _b[0], value = _b[1];
+            headers[_this._names.get(name)] = value;
+            return headers;
+        }, {});
+    };
+    /**
+     * Returns a boolean stating whether a `Headers` object contains a certain header.
+     */
+    HeadersPolyfill.prototype.has = function (name) {
+        return this._headers.hasOwnProperty(normalizeHeaderName_1.normalizeHeaderName(name));
+    };
+    /**
+     * Traverses the `Headers` object,
+     * calling the given callback for each header.
+     */
+    HeadersPolyfill.prototype.forEach = function (callback, thisArg) {
+        for (var name_3 in this._headers) {
+            if (this._headers.hasOwnProperty(name_3)) {
+                callback.call(thisArg, this._headers[name_3], name_3, this);
+            }
+        }
+    };
+    return HeadersPolyfill;
+}());
+exports["default"] = HeadersPolyfill;
+
+
+/***/ }),
+
+/***/ 8563:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+var __webpack_unused_export__;
+
+__webpack_unused_export__ = ({ value: true });
+__webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = exports.PM = void 0;
+var Headers_1 = __nccwpck_require__(924);
+Object.defineProperty(exports, "PM", ({ enumerable: true, get: function () { return Headers_1.default; } }));
+var headersToString_1 = __nccwpck_require__(4221);
+__webpack_unused_export__ = ({ enumerable: true, get: function () { return headersToString_1.headersToString; } });
+var headersToList_1 = __nccwpck_require__(6914);
+__webpack_unused_export__ = ({ enumerable: true, get: function () { return headersToList_1.headersToList; } });
+var headersToObject_1 = __nccwpck_require__(837);
+__webpack_unused_export__ = ({ enumerable: true, get: function () { return headersToObject_1.headersToObject; } });
+var stringToHeaders_1 = __nccwpck_require__(8051);
+__webpack_unused_export__ = ({ enumerable: true, get: function () { return stringToHeaders_1.stringToHeaders; } });
+var listToHeaders_1 = __nccwpck_require__(6064);
+__webpack_unused_export__ = ({ enumerable: true, get: function () { return listToHeaders_1.listToHeaders; } });
+var objectToHeaders_1 = __nccwpck_require__(9421);
+__webpack_unused_export__ = ({ enumerable: true, get: function () { return objectToHeaders_1.objectToHeaders; } });
+var reduceHeadersObject_1 = __nccwpck_require__(7313);
+__webpack_unused_export__ = ({ enumerable: true, get: function () { return reduceHeadersObject_1.reduceHeadersObject; } });
+var flattenHeadersList_1 = __nccwpck_require__(8586);
+__webpack_unused_export__ = ({ enumerable: true, get: function () { return flattenHeadersList_1.flattenHeadersList; } });
+var flattenHeadersObject_1 = __nccwpck_require__(9251);
+__webpack_unused_export__ = ({ enumerable: true, get: function () { return flattenHeadersObject_1.flattenHeadersObject; } });
+
+
+/***/ }),
+
+/***/ 8586:
+/***/ (function(__unused_webpack_module, exports) {
+
+"use strict";
+
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.flattenHeadersList = void 0;
+function flattenHeadersList(list) {
+    return list.map(function (_a) {
+        var _b = __read(_a, 2), name = _b[0], values = _b[1];
+        return [name, [].concat(values).join('; ')];
+    });
+}
+exports.flattenHeadersList = flattenHeadersList;
+
+
+/***/ }),
+
+/***/ 9251:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.flattenHeadersObject = void 0;
+var reduceHeadersObject_1 = __nccwpck_require__(7313);
+function flattenHeadersObject(headersObject) {
+    return reduceHeadersObject_1.reduceHeadersObject(headersObject, function (headers, name, value) {
+        headers[name] = [].concat(value).join('; ');
+        return headers;
+    }, {});
+}
+exports.flattenHeadersObject = flattenHeadersObject;
+
+
+/***/ }),
+
+/***/ 6914:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.headersToList = void 0;
+function headersToList(headers) {
+    var headersList = [];
+    headers.forEach(function (value, name) {
+        var resolvedValue = value.includes(',')
+            ? value.split(',').map(function (value) { return value.trim(); })
+            : value;
+        headersList.push([name, resolvedValue]);
+    });
+    return headersList;
+}
+exports.headersToList = headersToList;
+
+
+/***/ }),
+
+/***/ 837:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.headersToObject = void 0;
+// List of headers that cannot have multiple values,
+// while potentially having a comma in their single value.
+var singleValueHeaders = ['user-agent'];
+/**
+ * Converts a given `Headers` instance into a plain object.
+ * Respects headers with multiple values.
+ */
+function headersToObject(headers) {
+    var headersObject = {};
+    headers.forEach(function (value, name) {
+        var isMultiValue = !singleValueHeaders.includes(name.toLowerCase()) && value.includes(',');
+        headersObject[name] = isMultiValue
+            ? value.split(',').map(function (s) { return s.trim(); })
+            : value;
+    });
+    return headersObject;
+}
+exports.headersToObject = headersToObject;
+
+
+/***/ }),
+
+/***/ 4221:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.headersToString = void 0;
+var headersToList_1 = __nccwpck_require__(6914);
+/**
+ * Converts a given `Headers` instance to its string representation.
+ */
+function headersToString(headers) {
+    var list = headersToList_1.headersToList(headers);
+    var lines = list.map(function (_a) {
+        var _b = __read(_a, 2), name = _b[0], value = _b[1];
+        var values = [].concat(value);
+        return name + ": " + values.join(', ');
+    });
+    return lines.join('\r\n');
+}
+exports.headersToString = headersToString;
+
+
+/***/ }),
+
+/***/ 6064:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.listToHeaders = void 0;
+var Headers_1 = __nccwpck_require__(924);
+function listToHeaders(list) {
+    var headers = new Headers_1.default();
+    list.forEach(function (_a) {
+        var _b = __read(_a, 2), name = _b[0], value = _b[1];
+        var values = [].concat(value);
+        values.forEach(function (value) {
+            headers.append(name, value);
+        });
+    });
+    return headers;
+}
+exports.listToHeaders = listToHeaders;
+
+
+/***/ }),
+
+/***/ 9421:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.objectToHeaders = void 0;
+var Headers_1 = __nccwpck_require__(924);
+var reduceHeadersObject_1 = __nccwpck_require__(7313);
+/**
+ * Converts a given headers object to a new `Headers` instance.
+ */
+function objectToHeaders(headersObject) {
+    return reduceHeadersObject_1.reduceHeadersObject(headersObject, function (headers, name, value) {
+        var values = [].concat(value).filter(Boolean);
+        values.forEach(function (value) {
+            headers.append(name, value);
+        });
+        return headers;
+    }, new Headers_1.default());
+}
+exports.objectToHeaders = objectToHeaders;
+
+
+/***/ }),
+
+/***/ 7313:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.reduceHeadersObject = void 0;
+/**
+ * Reduces given headers object instnace.
+ */
+function reduceHeadersObject(headers, reducer, initialState) {
+    return Object.keys(headers).reduce(function (nextHeaders, name) {
+        return reducer(nextHeaders, name, headers[name]);
+    }, initialState);
+}
+exports.reduceHeadersObject = reduceHeadersObject;
+
+
+/***/ }),
+
+/***/ 8051:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.stringToHeaders = void 0;
+var Headers_1 = __nccwpck_require__(924);
+/**
+ * Converts a string representation of headers (i.e. from XMLHttpRequest)
+ * to a new `Headers` instance.
+ */
+function stringToHeaders(str) {
+    var lines = str.trim().split(/[\r\n]+/);
+    return lines.reduce(function (headers, line) {
+        var parts = line.split(': ');
+        var name = parts.shift();
+        var value = parts.join(': ');
+        headers.append(name, value);
+        return headers;
+    }, new Headers_1.default());
+}
+exports.stringToHeaders = stringToHeaders;
+
+
+/***/ }),
+
+/***/ 8846:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.normalizeHeaderName = void 0;
+var HEADERS_INVALID_CHARACTERS = /[^a-z0-9\-#$%&'*+.^_`|~]/i;
+function normalizeHeaderName(name) {
+    if (typeof name !== 'string') {
+        name = String(name);
+    }
+    if (HEADERS_INVALID_CHARACTERS.test(name) || name.trim() === '') {
+        throw new TypeError('Invalid character in header field name');
+    }
+    return name.toLowerCase();
+}
+exports.normalizeHeaderName = normalizeHeaderName;
+
+
+/***/ }),
+
+/***/ 9347:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.normalizeHeaderValue = void 0;
+function normalizeHeaderValue(value) {
+    if (typeof value !== 'string') {
+        value = String(value);
+    }
+    return value;
+}
+exports.normalizeHeaderValue = normalizeHeaderValue;
+
+
+/***/ }),
+
 /***/ 6472:
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -9803,19 +10406,35 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__nccwpck_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/compat */
 /******/ 	
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
+"use strict";
+__nccwpck_require__.r(__webpack_exports__);
+/* harmony import */ var headers_utils__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(8563);
 const core = __nccwpck_require__(405);
 const github = __nccwpck_require__(3899);
 
+
+
 try {
-    let myHeaders = new Headers();
+    let myHeaders = new headers_utils__WEBPACK_IMPORTED_MODULE_0__/* .Headers */ .PM();
     const opToken = core.getInput('OPEN_PROJECT_ID');
     let authString = 'apikey' + ":" + opToken;
     

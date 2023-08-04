@@ -1,5 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+import { Headers } from 'headers-utils'
+
 
 try {
     let myHeaders = new Headers();
