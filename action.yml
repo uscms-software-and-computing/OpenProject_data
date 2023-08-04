@@ -9,8 +9,8 @@ inputs:
     description: "OpenProject ID"
     required: true
 outputs:
-  # time: # id of output
-  #   description: 'The time we greeted you'
+  time: # id of output
+    description: 'The time we greeted you'
   work_package:
     description: 'Work Packages from OpenProject'
 runs:
