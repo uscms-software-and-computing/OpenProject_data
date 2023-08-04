@@ -17,7 +17,7 @@ jobs:
         id: hello
         with:
           who-to-greet: 'Rupesh Tiwari'
-          OPEN_PROJECT_ID: ${{secrets.OPEN_PROJECT_ID}}
+          OPEN_PROJECT_ID: "${{ secrets.OPEN_PROJECT_ID }}"
           input_file: ${{ env.DATA_FILE }}
       # Use the output from the `hello` step
       - name: Get the output time
