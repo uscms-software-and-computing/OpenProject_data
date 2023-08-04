@@ -17,6 +17,6 @@ jobs:
           OPEN_PROJECT_ID: ${{secrets.OPEN_PROJECT_ID}}
       # Use the output from the `hello` step
       - name: Get the output time
-        run: echo "${work_package}" > ./test.json
+        run: echo "${{ steps.helloworld.outputs.work_package }}" > ./test.json
 
           
