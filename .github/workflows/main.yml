@@ -19,7 +19,7 @@ jobs:
           who-to-greet: 'Rupesh Tiwari'
           OPEN_PROJECT_ID: "${{ secrets.OPEN_PROJECT_ID }}"
           # input_file: ${{ env.DATA_FILE }}
-          input_file: "./test.json"
+          # input_file: "./test.json"
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo ${{ steps.hello.outputs.time }}
