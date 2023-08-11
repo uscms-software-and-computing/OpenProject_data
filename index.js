@@ -47,7 +47,7 @@ try {
     core.setOutput('time', time);
     const payload = JSON.stringify(github.context.payload, undefined, 2);
 
-    console.log(`The event payload: ${payload}`);
+    console.log(`The event payload: ${results}`);
     // process.stdout.write(payload);
     core.setOutput('work_package', results);
     } catch (error) {
