@@ -60,7 +60,7 @@ try {
 
     console.log(`The event payload: ${payload}`);
     // process.stdout.write(payload);
-    core.setOutput('work_package', payload);
+    core.setOutput('work_package', results);
     } catch (error) {
     core.setFailed(error.message);
     }
