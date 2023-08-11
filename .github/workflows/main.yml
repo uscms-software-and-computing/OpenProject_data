@@ -17,13 +17,14 @@ jobs:
         with:
           endpoint: 'https://openproject-test.k8s.accre.vanderbilt.edu/api/v3/work_packages?columns%5B%5D=id&columns%5B%5D=project&columns%5B%5D=customField1&columns%5B%5D=category&columns%5B%5D=subject&columns%5B%5D=type&columns%5B%5D=status&columns%5B%5D=startDate&columns%5B%5D=dueDate&filters=%5B%7B%22project%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%224%22%2C%225%22%2C%226%22%2C%228%22%2C%2235%22%5D%7D%7D%2C%7B%22type%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%223%22%2C%221%22%2C%222%22%5D%7D%7D%2C%7B%22dueDate%22%3A%7B%22operator%22%3A%22%3C%3Ed%22%2C%22values%22%3A%5B%222023-06-30%22%2C%222023-10-01%22%5D%7D%7D%2C%7B%22customField2%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22f%22%5D%7D%7D%5D&includeSubprojects=false&offset=1&pageSize=1000&showHierarchies=true&showSums=false&sortBy=%5B%5B%22id%22%2C%22asc%22%5D%5D'
           configuration: '{ "method": "GET", "headers": {"Authorization": "Basic ${{ secrets.OPENPROJ_ID }}"} }'
+          setoutput: false
 
-      - name: Build and Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: main # Pushes the updates to the main branch.
-          folder: fetch-api-data-action # The location of the data.json file saved by the Fetch API Data action.
-          target-folder: data # Saves the data into the 'data' directory on the main branch.
+      # - name: Build and Deploy 🚀
+      #   uses: JamesIves/github-pages-deploy-action@v4
+      #   with:
+      #     branch: main # Pushes the updates to the main branch.
+      #     folder: fetch-api-data-action # The location of the data.json file saved by the Fetch API Data action.
+      #     target-folder: data # Saves the data into the 'data' directory on the main branch.
 
 
 # on: [push]
