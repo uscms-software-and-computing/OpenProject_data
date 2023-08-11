@@ -32,7 +32,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: openproject_data
-          repository-name: uscms_custom_gantt
+          repository-name: uscms-software-and-computing/uscms_custom_gantt
           folder: data
           target-folder: .
           
