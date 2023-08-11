@@ -59,7 +59,8 @@ try {
     const payload = JSON.stringify(github.context.payload, undefined, 2);
 
     console.log(`The event payload: ${payload}`);
-    process.stdout.write(payload);
+    // process.stdout.write(payload);
+    core.setOutput('work_package', payload);
     } catch (error) {
     core.setFailed(error.message);
     }
