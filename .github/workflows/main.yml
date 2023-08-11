@@ -35,7 +35,7 @@ jobs:
           repository-name: uscms-software-and-computing/uscms_custom_gantt
           token: ${{ secrets.DEPLOY_KEY }}
           folder: data
-          target-folder: .
+          target-folder: data
           
 
 
