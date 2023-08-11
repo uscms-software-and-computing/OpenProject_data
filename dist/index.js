@@ -35,7 +35,7 @@ try {
     let url = 'https://openproject-test.k8s.accre.vanderbilt.edu';
     let query = '/api/v3/work_packages?columns%5B%5D=id&columns%5B%5D=project&columns%5B%5D=customField1&columns%5B%5D=category&columns%5B%5D=subject&columns%5B%5D=type&columns%5B%5D=status&columns%5B%5D=startDate&columns%5B%5D=dueDate&filters=%5B%7B%22project%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%224%22%2C%225%22%2C%226%22%2C%228%22%2C%2235%22%5D%7D%7D%2C%7B%22type%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%223%22%2C%221%22%2C%222%22%5D%7D%7D%2C%7B%22dueDate%22%3A%7B%22operator%22%3A%22%3C%3Ed%22%2C%22values%22%3A%5B%222023-06-30%22%2C%222023-10-01%22%5D%7D%7D%2C%7B%22customField2%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22f%22%5D%7D%7D%5D&includeSubprojects=false&offset=1&pageSize=1000&showHierarchies=true&showSums=false&sortBy=%5B%5B%22id%22%2C%22asc%22%5D%5D';
     // fetch("https://openproject-test.k8s.accre.vanderbilt.edu/api/v3/queries/47", requestOptions)
-    const response = await (0,node_fetch__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .ZP)(url + query, requestOptions)
+    const response = await (0,node_fetch__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .ZP)(url + query, requestOptions);
         // .then(response => response.text())
         // .then(result => console.log(result))
         // .catch(error => console.log('error', error));
@@ -59,9 +59,11 @@ try {
     const payload = JSON.stringify(github.context.payload, undefined, 2);
 
     console.log(`The event payload: ${payload}`);
+    process.stdout.write(payload);
     } catch (error) {
     core.setFailed(error.message);
     }
+
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } }, 1);
 
