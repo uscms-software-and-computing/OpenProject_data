@@ -40,7 +40,7 @@ jobs:
       - name: Build and Deploy to Project Dashboard
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: openproject_data
+          branch: main
           repository-name: uscms-software-and-computing/project-dashboard
           token: ${{ secrets.PROJECT_DASHBOARD_DEPLOY }}
           folder: data
