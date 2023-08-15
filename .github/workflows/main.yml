@@ -36,33 +36,5 @@ jobs:
           token: ${{ secrets.DEPLOY_KEY }}
           folder: data
           target-folder: data
-          
-
-
-# on: [push]
-
-# # env:
-# #   DATA_FILE: "./test.json"
-
-# jobs:
-#   hello_world_job:
-#     runs-on: ubuntu-latest
-#     name: My first own action to say hello
-#     steps:
-#       # To use this repository's private action,
-#       # you must check out the repository
-#       - name: Checkout
-#         uses: actions/checkout@v2
-#       - name: Hello world action step
-#         uses: ./ # Uses an action in the root directory
-#         id: hello
-#         with:
-#           who-to-greet: 'Rupesh Tiwari'
-#           OPEN_PROJECT_ID: "${{ secrets.OPEN_PROJECT_ID }}"
-#           # input_file: ${{ env.DATA_FILE }}
-#           # input_file: "./test.json"
-#       # Use the output from the `hello` step
-#       - name: Get the output time
-#         run: echo "${{ steps.hello.outputs.work_package }}" > test.json
 
           
