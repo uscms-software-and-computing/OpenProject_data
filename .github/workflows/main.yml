@@ -44,4 +44,4 @@ jobs:
           repository-name: uscms-software-and-computing/project-dashboard
           token: ${{ secrets.PROJECT_DASHBOARD_DEPLOY }}
           folder: data
-          target-folder: data
+          target-folder: data 
