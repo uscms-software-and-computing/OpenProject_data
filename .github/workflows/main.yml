@@ -13,7 +13,7 @@ jobs:
           persist-credentials: false
 
       - name: Fetch API Data 📦
-        uses: JamesIves/fetch-api-data-action@v2.2.4
+        uses: JamesIves/fetch-api-data-action@v2
         with:
           endpoint: 'http://uscms-openproject.k8s.accre.vanderbilt.edu/api/v3/work_packages?filters=[{"project": {"operator": "=", "values": ["4","5","35","6","8"]}}]&pageSize=1000'
           configuration: '{ "method": "GET", "headers": {"Authorization": "Basic ${{ secrets.OPENPROJ_ID }}"} }'
