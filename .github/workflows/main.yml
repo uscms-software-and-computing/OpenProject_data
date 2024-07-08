@@ -24,7 +24,7 @@ jobs:
       - name: Build and Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: main # Pushes the updates to the main branch.
+          branch: main # Pushes the updates to the main branch.  debug
           folder: data # The location of the data.json file saved by the Fetch API Data action.
           target-folder: data # Saves the data into the 'data' directory on the main branch.
 
