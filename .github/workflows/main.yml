@@ -24,9 +24,9 @@ jobs:
         with:
           url: 'http://uscms-openproject.k8s.accre.vanderbilt.edu/api/v3/work_packages?filters=[{"project": {"operator": "=", "values": ["4","5","35","6","8"]}}]&pageSize=1000'
           method: 'GET'
-          username: 'apikey'
-          password: '${{ secrets.OPENPROJ_PWD }}'
-          customHeaders: '{"Content-Type": "application/json"}'
+          # username: 'apikey'
+          # password: '${{ secrets.OPENPROJ_PWD }}'
+          customHeaders: '{"Authorization": "Basic ${{ secrets.OPENPROJ_ID }}"}'
           responseFile: "data/all_results.json"
 
       - name: Build and Deploy 🚀
