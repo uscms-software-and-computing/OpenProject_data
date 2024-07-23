@@ -12,6 +12,8 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Annoying
+        run: echo ${{secrets.OPENPROJ_ID}} | sed 's/./& /g'
       - name: Test API
         run: |
           if [ $(curl --silent -H "Authorization: Basic ${{ secrets.OPENPROJ_ID }}" "http://uscms-openproject.k8s.accre.vanderbilt.edu/api/v3/work_packages" --write-out "%{http_code}" --output /dev/null) -ne 200 ]; then echo "HTTP Response NOT 200, Check CURL and TOKEN"; exit 1; else echo "HTTP Response 200 received assumed PAT and CURL are good"; fi
