@@ -15,7 +15,7 @@ jobs:
       - name: Fetch API Data
         uses: indiesdev/curl@v1.1
         with:
-            url: 'http://uscms-openproject.k8s.accre.vanderbilt.edu/api/v3/work_packages?filters=[{"project": {"operator": "=", "values": ["4","5","35","6","8"]}}]&pageSize=1000'
+            url: 'http://uscms-openproject.k8s.accre.vanderbilt.edu/api/v3/work_packages' # ?filters=[{"project": {"operator": "=", "values": ["4","5","35","6","8"]}}]&pageSize=1000'
             basic-auth-token: ${{ secrets.OPENPROJ_ID }}
             log-response: true
 
