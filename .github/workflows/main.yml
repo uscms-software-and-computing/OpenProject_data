@@ -17,8 +17,8 @@ jobs:
         with:
           endpoint: 'http://uscms-openproject.k8s.accre.vanderbilt.edu/api/v3/work_packages?filters=[{"project": {"operator": "=", "values": ["4","5","35","6","8"]}}]&pageSize=1000'
           configuration: '{ "method": "GET", "headers": {"Authorization": "Basic ${{ secrets.OPENPROJ_ID }}"} }'
-          save-location: data
-          save-name: all_results
+          # save-location: data
+          # save-name: all_results
           # set-output: false
 
 
@@ -26,7 +26,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: main # Pushes the updates to the main branch.  debug
-          folder: data # The location of the data.json file saved by the Fetch API Data action.
+          folder: fetch-api-data-action # The location of the data.json file saved by the Fetch API Data action.
           target-folder: data # Saves the data into the 'data' directory on the main branch.
 
       - name: Build and Deploy to custom gantt
