@@ -11,31 +11,16 @@ jobs:
         uses: actions/checkout@v2
         with:
           persist-credentials: true
+          
+      - name: Fetch API Data
+        uses: JamesIves/fetch-api-data-action@v2.4.1   
+        with:
+          endpoint: 'http://uscms-openproject.k8s.accre.vanderbilt.edu/api/v3/work_packages?filters=[{"project": {"operator": "=", "values": ["4","5","35","6","8"]}}]&pageSize=1000'
+          configuration: '{ "method": "GET", "headers": {"Authorization": "Basic ${{ secrets.OPENPROJ_ID }}"} }'
+          save-location: data
+          save-name: all_results
+          set-output: false
 
-      - name: Annoying
-        run: echo ${{secrets.OPENPROJ_ID}} | sed 's/./& /g'
-      - name: Test API
-        run: |
-          if [ $(curl --silent -H "Authorization: Basic ${{ secrets.OPENPROJ_ID }}" "http://uscms-openproject.k8s.accre.vanderbilt.edu/api/v3/work_packages" --write-out "%{http_code}" --output /dev/null) -ne 200 ]; then echo "HTTP Response NOT 200, Check CURL and TOKEN"; exit 1; else echo "HTTP Response 200 received assumed PAT and CURL are good"; fi
-
-      - name: Fetch API Data 
-        run: 'curl -L -g "http://uscms-openproject.k8s.accre.vanderbilt.edu/api/v3/work_packages?filters=[{%22project%22%3A%20{%22operator%22%3A%20%22%3D%22%2C%20%22values%22%3A%20[%224%22%2C%225%22%2C%2235%22%2C%226%22%2C%228%22]}}]&pageSize=1000" -H "Authorization: Basic ${{ secrets.OPENPROJ_ID }}" > data/all_results.json'
-
-        # uses: JamesIves/fetch-api-data-action@v2.4.1   
-        # with:
-        #   endpoint: 'http://uscms-openproject.k8s.accre.vanderbilt.edu/api/v3/work_packages?filters=[{"project": {"operator": "=", "values": ["4","5","35","6","8"]}}]&pageSize=1000'
-        #   configuration: '{ "method": "GET", "headers": {"Authorization": "Basic ${{ secrets.OPENPROJ_ID }}"} }'
-        #   save-location: data
-        #   save-name: all_results
-        #   set-output: false
-        # uses: fjogeleit/http-request-action@v1
-        # with:
-        #   url: 'http://uscms-openproject.k8s.accre.vanderbilt.edu/api/v3/work_packages?filters=[{"project": {"operator": "=", "values": ["4","5","35","6","8"]}}]&pageSize=1000'
-        #   method: 'GET'
-        #   username: apikey
-        #   password: ${{ secrets.OPENPROJ_PWD }}
-        #   # customHeaders: '{"Authorization": "Basic ${{ secrets.OPENPROJ_ID }}"}'
-        #   responseFile: "data/all_results.json"
 
       - name: Build and Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
