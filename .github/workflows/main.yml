@@ -6,6 +6,7 @@ on:
 jobs:
   refresh-feed:
     runs-on: ubuntu-latest
+    secrets: inherit
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
