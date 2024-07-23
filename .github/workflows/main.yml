@@ -12,6 +12,10 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Test API
+        run: |
+          if [ $(curl --silent -H "Authorization: Basic ${{ secrets.OPENPROJ_ID }}" "http://uscms-openproject.k8s.accre.vanderbilt.edu/api/v3/work_packages" --write-out "%{http_code}" --output /dev/null) -ne 200 ]; then echo "HTTP Response NOT 200, Check CURL and TOKEN"; exit 1; else echo "HTTP Response 200 received assumed PAT and CURL are good"; fi
+
       - name: Fetch API Data 
         run: 'curl -L -g "http://uscms-openproject.k8s.accre.vanderbilt.edu/api/v3/work_packages?filters=[{%22project%22%3A%20{%22operator%22%3A%20%22%3D%22%2C%20%22values%22%3A%20[%224%22%2C%225%22%2C%2235%22%2C%226%22%2C%228%22]}}]&pageSize=1000" -H "Authorization: Basic ${{ secrets.OPENPROJ_ID }}" > data/all_results.json'
 
