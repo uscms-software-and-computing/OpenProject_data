@@ -13,7 +13,8 @@ jobs:
           persist-credentials: false
 
       - name: Remove files
-        run: rm fetch-api-data-action/*
+        run: | 
+          rm fetch-api-data-action/*
         
       - name: Fetch API Data
         uses: JamesIves/fetch-api-data-action@2.0.1
