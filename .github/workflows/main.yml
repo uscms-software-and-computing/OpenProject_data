@@ -19,7 +19,7 @@ jobs:
           configuration: '{ "method": "GET", "headers": {"Authorization": "Basic ${{ secrets.OPENPROJ_ID }}"} }'
           save-location: data
           save-name: all_results
-          set-output: false
+          # set-output: false
 
 
       - name: Build and Deploy 🚀
