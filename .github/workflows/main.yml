@@ -16,7 +16,7 @@ jobs:
         uses: JamesIves/fetch-api-data-action@v2.3.0
         with:
           endpoint: 'http://uscms-openproject.k8s.accre.vanderbilt.edu/api/v3/work_packages?filters=[{"dueDate": { "operator": "<>d", "values": ["2023-01-01", "2023-12-31"] }}]&pageSize=1000'
-          configuration: '{ "method": "GET", "headers": {"Authorization": "Basic ${{ secrets.OPENPROJ_ID }}"} }'
+          configuration: '{ "method": "GET", "headers": {"Authorization": "Basic ${{ secrets.OPENPROJ_ID }}"}, "mode": "no-cors" }'
           save-location: data
           save-name: all_results
           set-output: false
