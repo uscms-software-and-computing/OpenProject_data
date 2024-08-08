@@ -19,14 +19,21 @@ jobs:
           # endpoint: 'http://uscms-openproject.k8s.accre.vanderbilt.edu/api/v3/work_packages?filters=[{"dueDate": { "operator": "<>d", "values": ["2023-01-01", "2023-12-31"] }}]&pageSize=1000'
           endpoint: 'http://uscms-openproject.k8s.accre.vanderbilt.edu/api/v3/work_packages?filters=[{"type": {"operator": "=", "values": ["3"]}}, {"project": {"operator": "=", "values": ["4","5","35","6","8"]}}]&pageSize=1000'          
           configuration: '{ "method": "GET", "headers": {"Authorization": "Basic ${{ secrets.OPENPROJ_ID }}"}, "mode": "no-cors" }'
-          save-location: data
-          save-name: all_results
-          debug: true
-          # set-output: false
+          # save-location: data
+          # save-name: all_results
+          # debug: true
+          # # set-output: false
 
-      - name: Test me
-        run: |
-          echo "${{ steps.test1.outputs.fetch-api-data }}"
+      - name: Build and Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: main # Pushes the updates to the main branch.
+          folder: fetch-api-data-action # The location of the data.json file saved by the Fetch API Data action.
+          target-folder: data # 
+
+      # - name: Test me
+      #   run: |
+      #     echo "${{ steps.test1.outputs.fetch-api-data }}"
       # - name: Build and Deploy 🚀
       #   uses: JamesIves/github-pages-deploy-action@v4
       #   with:
