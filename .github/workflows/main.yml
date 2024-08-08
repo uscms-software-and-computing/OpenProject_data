@@ -20,14 +20,14 @@ jobs:
           configuration: '{ "method": "GET", "headers": {"Authorization": "Basic ${{ secrets.OPENPROJ_ID }}"}, "mode": "no-cors" }'
           save-location: data
           save-name: all_results
-          set-output: false
+          # set-output: false
 
       - name: Build and Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: main # Pushes the updates to the main branch.
           folder: data # The location of the data.json file saved by the Fetch API Data action.
-          target-folder: / # Saves the data into the 'data' directory on the main branch.
+          target-folder: /data # Saves the data into the 'data' directory on the main branch.
           # single-commit: true
 
       - name: Build and Deploy to custom gantt
