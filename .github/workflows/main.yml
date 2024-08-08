@@ -13,6 +13,7 @@ jobs:
           persist-credentials: false
 
       - name: Fetch API Data 📦
+        id: test1
         uses: JamesIves/fetch-api-data-action@v2
         with:
           # endpoint: 'http://uscms-openproject.k8s.accre.vanderbilt.edu/api/v3/work_packages?filters=[{"dueDate": { "operator": "<>d", "values": ["2023-01-01", "2023-12-31"] }}]&pageSize=1000'
@@ -24,7 +25,8 @@ jobs:
           # set-output: false
 
       - name: Test me
-        run: echo "${{ env.fetchApiData }}"
+        run: |
+          echo "${{ steps.test1.outputs.fetchApiData }}"
       # - name: Build and Deploy 🚀
       #   uses: JamesIves/github-pages-deploy-action@v4
       #   with:
