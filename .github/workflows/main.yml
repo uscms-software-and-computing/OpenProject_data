@@ -20,6 +20,7 @@ jobs:
           configuration: '{ "method": "GET", "headers": {"Authorization": "Basic ${{ secrets.OPENPROJ_ID }}"}, "mode": "no-cors" }'
           save-location: data
           save-name: all_results
+          debug: true
           # set-output: false
 
       # - name: Build and Deploy 🚀
