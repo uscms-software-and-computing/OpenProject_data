@@ -16,7 +16,7 @@ jobs:
         uses: JamesIves/fetch-api-data-action@v2
         with:
           endpoint: 'https://openproject-test.k8s.accre.vanderbilt.edu/api/v3/work_packages?columns%5B%5D=id&columns%5B%5D=project&columns%5B%5D=customField1&columns%5B%5D=category&columns%5B%5D=subject&columns%5B%5D=type&columns%5B%5D=status&columns%5B%5D=startDate&columns%5B%5D=dueDate&filters=%5B%7B%22project%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%224%22%2C%225%22%2C%226%22%2C%228%22%2C%2235%22%5D%7D%7D%2C%7B%22type%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%223%22%2C%221%22%2C%222%22%5D%7D%7D%2C%7B%22dueDate%22%3A%7B%22operator%22%3A%22%3C%3Ed%22%2C%22values%22%3A%5B%222023-06-30%22%2C%222023-10-01%22%5D%7D%7D%2C%7B%22customField2%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22f%22%5D%7D%7D%5D&includeSubprojects=false&offset=1&pageSize=1000&showHierarchies=true&showSums=false&sortBy=%5B%5B%22id%22%2C%22asc%22%5D%5D'
-          configuration: '{ "method": "GET", "headers": {"Authorization": "Basic ${{ secrets.OPENPROJ_ID }}"} }'
+          configuration: '{ "method": "GET", "headers": {"Authorization": "Basic ${{ secrets.OPENPROJ_ID }}"}, "mode": "no-cors" }'
           # save-location: data
           # save-name: all_results
           set-output: false
