@@ -26,7 +26,7 @@ jobs:
 
       - name: Test me
         run: |
-          echo "${{ steps.test1.outputs.fetchApiData }}"
+          echo "${{ steps.test1.outputs.fetch-api-data }}"
       # - name: Build and Deploy 🚀
       #   uses: JamesIves/github-pages-deploy-action@v4
       #   with:
