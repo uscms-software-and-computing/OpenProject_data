@@ -23,6 +23,8 @@ jobs:
           debug: true
           # set-output: false
 
+      - name: Test me
+        run: echo "$fetchApiData"
       # - name: Build and Deploy 🚀
       #   uses: JamesIves/github-pages-deploy-action@v4
       #   with:
